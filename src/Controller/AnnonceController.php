@@ -47,10 +47,9 @@ class AnnonceController extends AbstractController
      */
     public function afficherAnnonce()
     {
-        $repository = $this->getDoctrine()->getRepository(Annonce::class);
         $annonces = $this->annonceRepository->findAll();
 
-        return $this->render('annonce/index.html.twig', [
+        return $this->render('front/annonce/index.html.twig', [
             'annonces' => $annonces
         ]);
     }
