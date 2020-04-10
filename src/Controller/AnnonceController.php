@@ -20,27 +20,27 @@ class AnnonceController extends AbstractController
         $this->manager = $manager;
     }
 
-    /**
-     * @Route("/envoyer-annonce", name="envoyer_annonce")
-     */
-    public function envoyerAnnonce()
-    {
-        for ($i = 0; $i < 10; $i++) 
-        {
-            $annonces = new Annonce();
-            $annonces
-                ->setTitre('Annonce' . $i)
-                ->setSlug('slug-annonce' . $i)
-                ->setContenu('message de test' . $i);
+    // /**
+    //  * @Route("/envoyer-annonce", name="envoyer_annonce")
+    //  */
+    // public function envoyerAnnonce()
+    // {
+    //     for ($i = 0; $i < 10; $i++) 
+    //     {
+    //         $annonces = new Annonce();
+    //         $annonces
+    //             ->setTitre('Annonce' . $i)
+    //             ->setSlug('slug-annonce' . $i)
+    //             ->setContenu('message de test' . $i);
 
-            // Data persistance
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonces);
-        }
-        $entityManager->flush();
+    //         // Data persistance
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($annonces);
+    //     }
+    //     $entityManager->flush();
 
-        return new Response("c'est ok");
-    }
+    //     return new Response("c'est ok");
+    // }
 
     /**
      * @Route("/afficher-annonce", name="afficher_annonce")
