@@ -31,11 +31,11 @@ class Image
         return $this->id;
     }
 
+
     public function getUrl(): ?string
     {
         return $this->url;
     }
-
     public function setUrl(string $url): self
     {
         $this->url = $url;
@@ -43,11 +43,11 @@ class Image
         return $this;
     }
 
+
     public function getAnnonce(): ?Annonce
     {
         return $this->annonce;
     }
-
     public function setAnnonce(?Annonce $annonce): self
     {
         $this->annonce = $annonce;
