@@ -22,6 +22,11 @@ class Image
     private $url;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $legende;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Annonce", inversedBy="images")
      */
     private $annonce;
@@ -39,6 +44,17 @@ class Image
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getLegende(): ?string
+    {
+        return $this->legende;
+    }
+    public function setLegende(string $legende): self
+    {
+        $this->legende = $legende;
 
         return $this;
     }
