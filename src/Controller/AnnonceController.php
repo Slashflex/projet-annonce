@@ -3,12 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Repository\AnnonceRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnnonceController extends AbstractController
 {
+    // private $manager;
+    private $annonceRepository;
+
+    public function __construct(AnnonceRepository $annonceRepository)
+    {
+        $this->annonceRepository = $annonceRepository;
+    }
+
     /**
      * @Route("/envoyer-annonce", name="envoyer_annonce")
      */
@@ -36,7 +45,7 @@ class AnnonceController extends AbstractController
     public function afficherAnnonce()
     {
         $repository = $this->getDoctrine()->getRepository(Annonce::class);
-        $annonce = $repository->findAll();
+        $annonce = $this->annonceRepository->findAll();
 
         return $this->render('annonce/index.html.twig', [
             'annonce' => $annonce
