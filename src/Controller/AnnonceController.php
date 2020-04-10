@@ -27,15 +27,15 @@ class AnnonceController extends AbstractController
     {
         for ($i = 0; $i < 10; $i++) 
         {
-            $annonce = new Annonce();
-            $annonce
+            $annonces = new Annonce();
+            $annonces
                 ->setTitre('Annonce' . $i)
                 ->setSlug('slug-annonce' . $i)
                 ->setContenu('message de test' . $i);
 
             // Data persistance
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
+            $entityManager->persist($annonces);
         }
         $entityManager->flush();
 
@@ -48,10 +48,10 @@ class AnnonceController extends AbstractController
     public function afficherAnnonce()
     {
         $repository = $this->getDoctrine()->getRepository(Annonce::class);
-        $annonce = $this->annonceRepository->findAll();
+        $annonces = $this->annonceRepository->findAll();
 
         return $this->render('annonce/index.html.twig', [
-            'annonce' => $annonce
+            'annonces' => $annonces
         ]);
     }
 }
