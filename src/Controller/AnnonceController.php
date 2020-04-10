@@ -25,7 +25,8 @@ class AnnonceController extends AbstractController
      */
     public function envoyerAnnonce()
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) 
+        {
             $annonce = new Annonce();
             $annonce
                 ->setTitre('Annonce' . $i)
