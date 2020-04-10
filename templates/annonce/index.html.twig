@@ -5,16 +5,19 @@
 {% block body %}
 
     <h1>Voici la liste des annonces</h1>
-    <div class="row">
-        {% for a in annonce %}
-        <div class="card" style="width: 18rem; margin: 2rem auto">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ a.titre }}</h5>
-              <p class="card-text">{{ a.contenu }}</p>
-              <a href="#" class="btn btn-primary">Show</a>
+    <div class="container">
+
+        <div class="row justify-content-start">
+            {% for a in annonces %}
+            <div class="card mb-5 mx-auto" style="width: 18rem">
+                <img src="{{ a.imageCouverture }}" class="card-img-top" alt="{{ a.imageCouverture }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ a.titre }}</h5>
+                    <p class="card-text">{{ a.introduction }}</p>
+                    <a href="#" class="btn btn-primary">Show</a>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 {% endblock %}
