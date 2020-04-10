@@ -1,0 +1,124 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
+ */
+class Annonce
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prix;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $introduction;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $contenu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCouverture;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+    public function setPrix(?float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+
+    public function getIntroduction(): ?string
+    {
+        return $this->introduction;
+    }
+    public function setIntroduction(?string $introduction): self
+    {
+        $this->introduction = $introduction;
+
+        return $this;
+    }
+
+
+    public function getContenu(): ?string
+    {
+        return $this->contenu;
+    }
+    public function setContenu(string $contenu): self
+    {
+        $this->contenu = $contenu;
+
+        return $this;
+    }
+
+
+    public function getImageCouverture(): ?string
+    {
+        return $this->imageCouverture;
+    }
+    public function setImageCouverture(?string $imageCouverture): self
+    {
+        $this->imageCouverture = $imageCouverture;
+
+        return $this;
+    }
+}
