@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos Annonces{% endblock %}
+
+{% block body %}
+    <h1>Voici la liste des annonces</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Slug</th>
+                <th>Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for a in annonce %}
+            <tr>
+                <td>{{ a.id }}</td>
+                <td>{{ a.titre }}</td>
+                <td>{{ a.slug }}</td>
+                <td>{{ a.contenu }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        td {
+            padding: 0 2rem;
+        }
+    </style>
+{% endblock %}
