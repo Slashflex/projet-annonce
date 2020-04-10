@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
                 $image
                     ->setUrl("https://i.picsum.photos/id/". mt_rand(0, 1000) ."/640/480.jpg")
                     ->setLegende($faker->sentence())
-                    ->setAnnonce($annonce->getId());
+                    ->setAnnonce($annonce);
                 
                 $manager->persist($image);
             }    
