@@ -17,7 +17,7 @@ class AppExtension extends AbstractExtension
 
     public function tronq($string, $limitCharacter)
     {
-        return substr($string, 0, $limitCharacter);
+        return substr($string, 0, $limitCharacter) . '...';
     }
 
     // Possibilité de créer une fonction pour faire la même action
