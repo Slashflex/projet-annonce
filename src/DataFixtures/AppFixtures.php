@@ -23,7 +23,8 @@ class AppFixtures extends Fixture
             $annonce
                 ->setTitre($titre)
                 ->setImageCouverture($imageCouverture)
-                ->setIntroduction($introduction);
+                ->setIntroduction($introduction)
+                ->setPrix(mt_rand(20, 100));
             
             for ($j = 1; $j <= mt_rand(1, 10); $j++)
             {
