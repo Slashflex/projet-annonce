@@ -18,6 +18,7 @@ class AppFixtures extends Fixture
             $faker = Factory::create('fr_FR');
             $slug = new Slugify();
             $annonce = new Annonce();
+            $contenu = '<p>' . join('</p><p>',$faker->paragraphs(3)) . '</p>';
             $titre = $faker->sentence();
             $imageCouverture = "https://i.picsum.photos/id/". mt_rand(0, 1000) ."/1200/350.jpg";
             $introduction = $faker->paragraph(2);
@@ -26,6 +27,7 @@ class AppFixtures extends Fixture
                 ->setTitre($titre)
                 ->setImageCouverture($imageCouverture)
                 ->setIntroduction($introduction)
+                ->setContenu($contenu)
                 ->setPrix(mt_rand(20, 100))
                 ->setSlug($slug->slugify($annonce->getTitre()));
             
