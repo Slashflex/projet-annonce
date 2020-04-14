@@ -61,9 +61,8 @@ class AnnonceController extends AbstractController
      * 
      * @Route("/{slug}", name="afficher_annonce")
      */
-    public function show($slug, AnnonceRepository $annonceRepository)
+    public function show(Annonce $annonce)
     {
-        $annonce = $annonceRepository->findOneBySlug($slug);
         return $this->render('front/annonce/show.html.twig', [
             'annonce' => $annonce,
         ]);
