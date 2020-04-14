@@ -82,8 +82,11 @@ class Annonce
      */
     public function initializeSlug()
     {
-        $slug = new Slugify();
-        $this->slug = $slug->slugify($this->titre);
+        if (empty($this->slug))
+        {
+            $slug = new Slugify();
+            $this->slug = $slug->slugify($this->titre);
+        }
     }
     public function getSlug(): ?string
     {
