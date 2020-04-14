@@ -43,14 +43,29 @@ class AnnonceController extends AbstractController
     // }
 
     /**
-     * @Route("/afficher-annonce", name="afficher_annonce")
+     * Ici on affiche une liste de nos annonces
+     * 
+     * @Route("/afficher-annonces", name="afficher_annonces")
      */
-    public function afficherAnnonce()
+    public function afficherAnnonces()
     {
         $annonces = $this->annonceRepository->findAll();
 
         return $this->render('front/annonce/index.html.twig', [
             'annonces' => $annonces
+        ]);
+    }
+
+    /**
+     * Ici on affiche une annonce
+     * 
+     * @Route("/{slug}", name="afficher_annonce")
+     */
+    public function show($slug, AnnonceRepository $annonceRepository)
+    {
+        $annonce = $annonceRepository->findOneBySlug($slug);
+        return $this->render('front/annonce/show.html.twig', [
+            'annonce' => $annonce,
         ]);
     }
 }

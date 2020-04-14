@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Annonce
 {
@@ -74,7 +76,15 @@ class Annonce
         return $this;
     }
 
-
+    /**
+     * @Orm\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function initializeSlug()
+    {
+        $slug = new Slugify();
+        $this->slug = $slug->slugify($this->titre);
+    }
     public function getSlug(): ?string
     {
         return $this->slug;

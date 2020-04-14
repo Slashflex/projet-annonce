@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block titre %}{{ annonce.titre }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <img src="{{ annonce.imageCouverture }}" alt="{{ annonce.titre }}">
+            <h1 class="font-weight-bold">{{ annonce.titre }}</h1>
+            <p>{{ annonce.introduction }}</p>
+        </div>
+    </div>
+{% endblock %}
