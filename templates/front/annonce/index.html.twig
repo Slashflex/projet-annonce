@@ -10,7 +10,7 @@
                 <img src="{{ a.imageCouverture }}" class="card-img-top" alt="{{ a.imageCouverture }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ a.titre }}</h5>
-                    <p class="card-text">{{ a.introduction }}</p>
+                    <p class="card-text">{{ a.introduction|tronquer(10) }}</p>
                     <a href="#" class="btn btn-primary">Show</a>
                 </div>
             </div>
