@@ -12,10 +12,10 @@
                     <h5 class="card-title">{{ a.titre }}</h5>
                     <p class="card-text">{{ a.introduction|tronquer(80) }}</p>
                     {# <p class="card-text">{{ tronquer(a.introduction, 10) }}</p> #}
-                    <div class="prix-annonce">
-                        <p>{{ a.prix }} €</p>
+                    <div class="d-flex justify-content-between">
+                        <p class=" font-weight-bold">{{ a.prix }} €</p>
+                        <a href="#" class="btn btn-primary">Show</a>
                     </div>
-                    <a href="#" class="btn btn-primary">Show</a>
                 </div>
             </div>
             {% endfor %}
