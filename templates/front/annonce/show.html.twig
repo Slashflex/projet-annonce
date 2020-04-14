@@ -10,7 +10,10 @@
             <p>{{ annonce.introduction }}</p>
             <p class="h2">{{ annonce.prix }} €</p>
         </div>
-        <p>{{ annonce.contenu | raw }}</p>
+        
+        <div class="my-5">
+            {{ annonce.contenu | raw }}
+        </div>
 
         <div id="carouselExampleIndicators" class="carousel slide w-50 mx-auto" data-ride="carousel">
             <ol class="carousel-indicators">
