@@ -13,7 +13,7 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('slug')
+            // ->add('slug')
             ->add('prix')
             ->add('introduction')
             ->add('contenu')
