@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Form\AnnonceType;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -60,17 +62,18 @@ class AnnonceController extends AbstractController
      *
      * @Route("/new", name="creer_annonce")
      */
-    public function create()
+    public function create(Request $request, EntityManagerInterface $manager)
     {
         $annonce = new Annonce();
-        
-        $form = $this->createFormBuilder($annonce)
-            ->add('titre')
-            ->add('prix')
-            ->add('introduction')
-            ->add('contenu')
-            ->add('imageCouverture')
-            ->getForm();
+
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($annonce);
+            $manager->flush();
+        }
 
         return $this->render('front/annonce/create.html.twig', [
             'form' => $form->createView()
