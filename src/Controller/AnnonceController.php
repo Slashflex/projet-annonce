@@ -73,6 +73,15 @@ class AnnonceController extends AbstractController
         {
             $manager->persist($annonce);
             $manager->flush();
+            
+            $this->addFlash(
+                'success',
+                'Votre annonce a bien été créee'
+            );
+
+            return $this->redirectToRoute('afficher_annonce', [
+                'slug' => $annonce->getSlug()
+            ]);
         }
 
         return $this->render('front/annonce/create.html.twig', [
