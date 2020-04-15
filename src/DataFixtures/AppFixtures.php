@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
             $slug = new Slugify();
             $annonce = new Annonce();
             $contenu = '<p>' . join('</p><p>',$faker->paragraphs(3)) . '</p>';
-            $titre = $faker->sentence();
+            $titre = $faker->sentence(3);
             $imageCouverture = "https://i.picsum.photos/id/". mt_rand(0, 1000) ."/1200/350.jpg";
             $introduction = $faker->paragraph(2);
 
