@@ -2,44 +2,60 @@
 
 {% block titre %}{{ annonce.titre }}{% endblock %}
 
+
 {% block body %}
+    <header style="background-image: url('{{ annonce.imageCouverture }}'); background-repeat: no-repeat; background-size: cover; padding: 8rem;">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center annonce-intro">
+                    <h1>{{ annonce.titre }}</h1>
+                    <p>{{ annonce.introduction }}</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
         <div class="row">
-            <img src="{{ annonce.imageCouverture }}" alt="{{ annonce.titre }}">
-            <h1 class="font-weight-bold">{{ annonce.titre }}</h1>
-            <p>{{ annonce.introduction }}</p>
-            <p class="h2">{{ annonce.prix }} €</p>
-        </div>
-        
-        <div class="my-5">
-            {{ annonce.contenu | raw }}
-        </div>
+            <div class="col-md-8">
+                <div id="carouselExampleIndicators" class="carousel slide wrapper" data-ride="carousel">
 
-        <div id="carouselExampleIndicators" class="carousel slide w-50 mx-auto" data-ride="carousel">
-            <ol class="carousel-indicators">
-                {% for image in annonce.images %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index }}" class="active"></li>
-                {% endfor %}
-            </ol>
-            <div class="carousel-inner">
-                {% for image in annonce.images %}
-                    <div class="carousel-item {% if loop.first %} active {% endif %}">
-                        <img class="d-block w-100" src="{{ image.url }}" alt="{{ image.legende }}">
-                        <div class="carousel-caption d-none d-md-block">
-                            <p class="h4 bg-dark p-2">{{ image.legende }}</p>
-                            <p>...</p>
-                        </div>
+                    <div class="carousel-inner">
+                        {% for image in annonce.images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img class="d-block w-100" src="{{ image.url }}" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <p class="h4">{{ image.legende }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                    <ol class="carousel-indicators">
+                        {% for image in annonce.images %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %}></li>
+                        {% endfor %}
+                    </ol>
+
+
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Précédent</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Suivant</span>
+                    </a>
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+
+            <div class="col-md-4">
+                <div class="my-5">
+                    {{ annonce.contenu | raw }}
+                </div>
+                <div>
+                    <p class="h2">{{ annonce.prix }} €</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
