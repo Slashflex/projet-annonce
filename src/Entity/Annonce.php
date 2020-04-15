@@ -7,9 +7,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 
+// Gérer l'insertion des champs
+use Symfony\Component\Validator\Constraints as Assert;
+// Gère si un champ donné n'est pas déjà existant en base de données
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ *     fields={"titre"},
+ *     message="Le titre que vous avez entré existe déjà en base de données"
+ * )
  */
 class Annonce
 {
@@ -21,7 +30,13 @@ class Annonce
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
+     * @Assert\Length(
+     *      min=10,
+     *      max=60,
+     *      minMessage="Vous devez entrer au minimum {{ limit }} caractères",
+     *      maxMessage="Vous devez entrer moins de {{ limit }} caractères"
+     * )
      */
     private $titre;
 
@@ -37,16 +52,29 @@ class Annonce
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *      min=20,
+     *      max=300,
+     *      minMessage="Vous devez entrer au minimum {{ limit }} caractères",
+     *      maxMessage="Vous devez entrer moins de {{ limit }} caractères"
+     * )
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *      min=20,
+     *      max=300,
+     *      minMessage="Vous devez entrer au minimum {{ limit }} caractères",
+     *      maxMessage="Vous devez entrer moins de {{ limit }} caractères"
+     * )
      */
     private $contenu;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(message="L'url '{{ value }}' n'est pas valide")
      */
     private $imageCouverture;
 
