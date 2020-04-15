@@ -2,8 +2,13 @@
 
 {% block titre %}{{ annonce.titre }}{% endblock %}
 
-
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
     <header style="background-image: url('{{ annonce.imageCouverture }}'); background-repeat: no-repeat; background-size: cover; padding: 8rem;">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
