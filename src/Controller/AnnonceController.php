@@ -89,6 +89,36 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/{slug}/editer", name="editer_annonce")
+     */
+    public function edit(Annonce $annonce, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($annonce);
+            $manager->flush();
+            
+            $this->addFlash(
+                'success',
+                'Votre annonce a bien été mise à jour'
+            );
+
+            return $this->redirectToRoute('afficher_annonce', [
+                'slug' => $annonce->getSlug()
+            ]);
+        }
+
+        return $this->render('front/annonce/edit.html.twig', [
+            'form' => $form->createView(),
+            'annonce' => $annonce
+        ]);
+    }
+
     /**
      * Affiche une annonce
      * 
