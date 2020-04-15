@@ -7,11 +7,41 @@
 
     <div class="container">
         <div class="row">
-            {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <button type="submit" class="btn-primary">Créer l'annonce</button>
+            {{ form_start(form, {'attr': {'class': 'creation-form mx-auto'}}) }}
+                <div class="form-group">
+                    <label for="title-field">Titre</label>
+                    {{ form_errors(form.titre) }}
+                    {{ form_widget(form.titre, {'attr': {'id': 'title-field'}}) }}
+                </div>
+
+                <div class="form-group">
+                    <label for="price-field">Prix</label>
+                    {{ form_errors(form.prix) }}
+                    {{ form_widget(form.prix, {'attr': {'id': 'price-field'}}) }}
+                </div>
+
+                <div class="form-group">
+                    <label for="introduction-field">Introduction</label>
+                    {{ form_errors(form.introduction) }}
+                    {{ form_widget(form.introduction, {'attr': {'id': 'introduction-field'}}) }}
+                </div>
+
+                <div class="form-group">
+                    <label for="content-field">Contenu</label>
+                    {{ form_errors(form.contenu) }}
+                    {{ form_widget(form.contenu, {'attr': {'id': 'content-field'}}) }}
+                </div>
+
+                <div class="form-group">
+                    <label for="image-field">Image de couverture</label>
+                    {{ form_errors(form.imageCouverture) }}
+                    {{ form_widget(form.imageCouverture, {'attr': {'id': 'image-field'}}) }}
+                </div>
+
+                <div class="form-group mx-auto">
+                    <button type="submit" class="btn btn-primary">Créer l'annonce</button>
+                </div>
             {{ form_end(form) }}
         </div>
     </div>
-    
 {% endblock %}
