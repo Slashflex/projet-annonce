@@ -79,7 +79,7 @@ class Annonce
     private $imageCouverture;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="annonce")
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="annonce", orphanRemoval=true)
      */
     private $images;
 
