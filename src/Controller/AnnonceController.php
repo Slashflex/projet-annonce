@@ -71,6 +71,12 @@ class AnnonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            foreach ($annonce->getImages() as $image)
+            {
+                $image->setAnnonce($annonce);
+                $manager->persist($image);
+            }
+
             $manager->persist($annonce);
             $manager->flush();
             
@@ -100,6 +106,12 @@ class AnnonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            foreach ($annonce->getImages() as $image)
+            {
+                $image->setAnnonce($annonce);
+                $manager->persist($image);
+            }
+
             $manager->persist($annonce);
             $manager->flush();
             
@@ -129,5 +141,23 @@ class AnnonceController extends AbstractController
         return $this->render('front/annonce/show.html.twig', [
             'annonce' => $annonce,
         ]);
+    }
+
+    /**
+     * Supprime une annonce
+     * 
+     * @Route("/{slug}/supprimer", name="supprimer_annonce")
+     */
+    public function delete(EntityManagerInterface $manager, Annonce $annonce)
+    {
+        $manager->remove($annonce);
+        $manager->flush();
+        
+        $this->addFlash(
+            'success',
+            'Votre annonce a bien été supprimée'
+        );
+
+        return $this->redirectToRoute('afficher_annonces');
     }
 }
