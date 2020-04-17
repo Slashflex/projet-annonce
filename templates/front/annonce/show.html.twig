@@ -27,9 +27,9 @@
                     <div class="carousel-inner">
                         {% for image in annonce.images %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                <img class="d-block w-100" src="{{ image.url }}" alt="First slide">
+                                <img class="d-block w-100" src="{{ image.url }}" alt="First slide" data-idimage="{{ loop.index0 }}">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <p class="h4">{{ image.legende }}</p>
+                                    <p class="h2">{{ image.legende }}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -58,6 +58,7 @@
                 <div class="d-flex justify-content-around align-items-center">
                     <p class="h2">{{ annonce.prix }} €</p>
                     <a href="{{ path('editer_annonce', {'slug': annonce.slug}) }}" class="btn btn-primary">Editer l'annonce</a>
+                    <a href="{{ path('supprimer_annonce', {'slug': annonce.slug}) }}" class="btn btn-danger">Supprimer l'annonce</a>
                 </div>
             </div>
         </div>
