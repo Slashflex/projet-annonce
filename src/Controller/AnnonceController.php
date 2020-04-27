@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/annonce")
+ */
 class AnnonceController extends AbstractController
 {
     private $manager;
@@ -20,28 +23,6 @@ class AnnonceController extends AbstractController
         $this->annonceRepository = $annonceRepository;
         $this->manager = $manager;
     }
-
-    // /**
-    //  * @Route("/envoyer-annonce", name="envoyer_annonce")
-    //  */
-    // public function envoyerAnnonce()
-    // {
-    //     for ($i = 0; $i < 10; $i++) 
-    //     {
-    //         $annonces = new Annonce();
-    //         $annonces
-    //             ->setTitre('Annonce' . $i)
-    //             ->setSlug('slug-annonce' . $i)
-    //             ->setContenu('message de test' . $i);
-
-    //         // Data persistance
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($annonces);
-    //     }
-    //     $entityManager->flush();
-
-    //     return new Response("c'est ok");
-    // }
 
     /**
      * Ici on affiche une liste de nos annonces
@@ -139,7 +120,7 @@ class AnnonceController extends AbstractController
     public function show(Annonce $annonce)
     {
         return $this->render('front/annonce/show.html.twig', [
-            'annonce' => $annonce,
+            'annonce' => $annonce
         ]);
     }
 
