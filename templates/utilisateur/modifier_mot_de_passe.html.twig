@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center py-5">Modifiez votre mot de passe</h1>
+    
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary px-5 d-block mx-auto">Modifier votre mot de passe</button>
+    {{ form_end(form) }}
+{% endblock %}
