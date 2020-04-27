@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %}{{app.user.nomComplet}}{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+		<div class="flash-notice alert-success">
+			{{ message }}
+		</div>
+    {% endfor %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-4 p-5">
+                <img src="{{ utilisateur.avatar }}" alt="{{ utilisateur.nomComplet }}">
+                <p>{{ utilisateur.nomComplet }}</p>
+                <p>{{ utilisateur.description }}</p>
+                {% if utilisateur is same as(app.user) %}
+                    <p>
+                        <a class="btn btn-primary" href="{{ path('modifier_profile') }}">Modifier mon profile</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="{{ path('modifier_mot_de_passe') }}">Modifier mon mot de passe</a>
+                    </p>
+                {% endif %}
+            </div>
+            <div class="col-8">
+                <h1>Vos annonces</h1>
+                <div class="row">
+                    {% for a in utilisateur.annonces %}
+                        {% include "front/annonce/_annonces.html.twig" %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
