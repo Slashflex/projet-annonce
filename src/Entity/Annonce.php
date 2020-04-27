@@ -83,6 +83,12 @@ class Annonce
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -202,6 +208,18 @@ class Annonce
                 $image->setAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuteur(): ?Utilisateur
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?Utilisateur $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }
