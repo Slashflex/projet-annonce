@@ -34,7 +34,7 @@ header {
 
 .carousel {
     &-indicators {
-        bottom: 1rem;
+        bottom: 4.5rem;
 
         li {
             width: inherit;
@@ -51,7 +51,24 @@ header {
         }
     }
     &-caption {
-        bottom: 7rem;
+        bottom: 13rem;
     }
     
+}
+
+.profil-image {
+    width: 3rem;
+    border-radius: 50%;
+}
+.dropdown-menu {
+    left: -5rem !important;
+}
+
+.masthead {
+    height: 65vh;
+    min-height: 500px;
+    background-image: url(https://i.picsum.photos/id/866/1920/1080.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
