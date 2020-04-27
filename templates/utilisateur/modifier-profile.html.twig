@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %}{{user.nomComplet}}{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="flash-notice alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	<h1 class="text-center my-5">Modifiez votre profile</h1>
+	<div class="container">
+		<div class="row">
+			{{ form_start(form, {'attr': {'class': 'mx-auto w-50', novalidate: 'novalidate'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.prenom) }}
+                    <div class="col-sm-12">
+                        {{ form_widget(form.prenom) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.nom) }}
+                    <div class="col-sm-12">
+                        {{ form_widget(form.nom) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    <div class="col-sm-12">
+                        {{ form_widget(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.avatar) }}
+                    <div class="col-sm-12">
+                        {{ form_widget(form.avatar) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+                    <div class="col-sm-12">
+                        {{ form_widget(form.description) }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary px-5 d-block mx-auto">Modifier mes informations</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}
