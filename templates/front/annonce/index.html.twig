@@ -13,18 +13,7 @@
         <h1 class="text-center mb-5">Les dernnières annonces</h1>
         <div class="row justify-content-start">
             {% for a in annonces %}
-            <div class="card mb-5 mx-auto" style="width: 18rem">
-                <img src="{{ a.imageCouverture }}" class="card-img-top" alt="{{ a.imageCouverture }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ a.titre }}</h5>
-                    <p class="card-text">{{ a.introduction|tronquer(80) }}</p>
-                    {# <p class="card-text">{{ tronquer(a.introduction, 10) }}</p> #}
-                    <div class="d-flex justify-content-between">
-                        <p class=" font-weight-bold">{{ a.prix }} €</p>
-                        <a href="{{ path('afficher_annonce', {'slug': a.slug}) }}" class="btn btn-primary">Show</a>
-                    </div>
-                </div>
-            </div>
+                {% include "front/annonce/_annonces.html.twig" %}
             {% endfor %}
         </div>
     </div>
