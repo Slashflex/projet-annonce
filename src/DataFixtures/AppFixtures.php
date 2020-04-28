@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\Image;
 use App\Entity\Annonce;
+use App\Entity\Role;
 use Cocur\Slugify\Slugify;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -23,6 +24,28 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
+
+        /**
+         * Création d'un "ROLE_ADMIN"
+         */
+        $roleAdmin = new Role();
+        $roleAdmin->setTitre('ROLE_ADMIN');
+        $manager->persist($roleAdmin);
+
+        /**
+         * Création d'un utilisateur qui a pour role "ROLE_ADMIN"
+         */
+        $userAdmin = new Utilisateur();
+        $userAdmin
+            ->setPrenom('David')
+            ->setNom('Developpeur')
+            ->setEmail('admin@admin.com')
+            ->setAvatar('https://avatars0.githubusercontent.com/u/44773291?s=400&u=95e5053803b58ea34e747e4c00e42547705a2513&v=4')
+            ->setMotDePasse($this->passwordEncoder->encodePassword($userAdmin, 'mdp'))
+            ->setDescription($faker->paragraph(2))
+            ->addRolesUtilisateur($roleAdmin);
+        $manager->persist($userAdmin);
+
         $sexes = ['male', 'female'];
         $users = [];
 
@@ -49,7 +72,6 @@ class AppFixtures extends Fixture
 
         for ($i = 1; $i <= 20; $i++) 
         {
-            $slug = new Slugify();
             $annonce = new Annonce();
             $contenu = '<p>' . join('</p><p>',$faker->paragraphs(3)) . '</p>';
             $titre = $faker->sentence(3);

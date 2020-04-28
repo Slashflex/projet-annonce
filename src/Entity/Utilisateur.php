@@ -177,9 +177,12 @@ class Utilisateur implements UserInterface
 
     public function getRoles()
     {
-        return [
-            'ROLE_USER'
-        ];
+        $roles = $this->rolesUtilisateur->map(function($role) {
+            return $role->getTitre();
+        })->toArray();
+
+        $roles[] = 'ROLE_USER';
+        return $roles;
     }
 
     public function getDescription(): ?string
