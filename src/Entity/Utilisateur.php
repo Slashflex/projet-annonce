@@ -83,9 +83,15 @@ class Utilisateur implements UserInterface
      */
     private $annonces;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", mappedBy="utilisateurs")
+     */
+    private $rolesUtilisateur;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->rolesUtilisateur = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -226,6 +232,34 @@ class Utilisateur implements UserInterface
             if ($annonce->getAuteur() === $this) {
                 $annonce->setAuteur(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRolesUtilisateur(): Collection
+    {
+        return $this->rolesUtilisateur;
+    }
+
+    public function addRolesUtilisateur(Role $rolesUtilisateur): self
+    {
+        if (!$this->rolesUtilisateur->contains($rolesUtilisateur)) {
+            $this->rolesUtilisateur[] = $rolesUtilisateur;
+            $rolesUtilisateur->addUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRolesUtilisateur(Role $rolesUtilisateur): self
+    {
+        if ($this->rolesUtilisateur->contains($rolesUtilisateur)) {
+            $this->rolesUtilisateur->removeElement($rolesUtilisateur);
+            $rolesUtilisateur->removeUtilisateur($this);
         }
 
         return $this;
