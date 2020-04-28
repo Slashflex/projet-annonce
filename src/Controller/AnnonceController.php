@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// Security & isGranted pour gérer les roles
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 /**
  * @Route("/annonce")
  */
@@ -42,6 +46,7 @@ class AnnonceController extends AbstractController
      * Créer une annonce
      *
      * @Route("/new", name="creer_annonce")
+     * @IsGranted("ROLE_USER")
      */
     public function create(Request $request, EntityManagerInterface $manager)
     {
@@ -57,6 +62,8 @@ class AnnonceController extends AbstractController
                 $image->setAnnonce($annonce);
                 $manager->persist($image);
             }
+
+            $annonce->setAuteur($this->getuser());
 
             $manager->persist($annonce);
             $manager->flush();
@@ -79,6 +86,7 @@ class AnnonceController extends AbstractController
 
     /**
      * @Route("/{slug}/editer", name="editer_annonce")
+     * @Security("is_granted('ROLE_USER') and user === annonce.getAuteur()", message="Vous devez être l'auteur de l'annonce pour pouvoir l'éditer")
      */
     public function edit(Annonce $annonce, Request $request, EntityManagerInterface $manager)
     {
@@ -128,6 +136,7 @@ class AnnonceController extends AbstractController
      * Supprime une annonce
      * 
      * @Route("/{slug}/supprimer", name="supprimer_annonce")
+     * @Security("is_granted('ROLE_USER') and user === annonce.getAuteur()", message="Vous devez être l'auteur de l'annonce pour pouvoir l'éditer")
      */
     public function delete(EntityManagerInterface $manager, Annonce $annonce)
     {

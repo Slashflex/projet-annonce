@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+// Security & isGranted pour gérer les roles
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 /**
  * @Route("/compte")
  */
@@ -33,6 +36,7 @@ class CompteUtilisateurController extends AbstractController
 
     /**
      * @Route("/modifier-profile", name="modifier_profile")
+     * @IsGranted("ROLE_USER")
      */
     public function modifierProfilUtilisateur(Request $request, EntityManagerInterface $entityManager)
     {
@@ -58,6 +62,7 @@ class CompteUtilisateurController extends AbstractController
 
     /**
      * @Route("/modifier-mot-de-passe", name="modifier_mot_de_passe")
+     * @IsGranted("ROLE_USER")
      */
     public function modifierMotDePasse(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder)
     {
