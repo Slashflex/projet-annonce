@@ -1,0 +1,41 @@
+{% block title %}Hello AdminAnnonceController!{% endblock %}
+
+{% block body %}
+    <h1>La liste des annonces</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">{{ knp_pagination_sortable(annonces, 'Id', 'id') }}<span class="mx-2">(Total {{ annonces.getTotalItemCount }})</span></th>
+                <th>{{ knp_pagination_sortable(annonces, 'Titre', 'titre') }}</th>
+                <th>{{ knp_pagination_sortable(annonces, 'Auteur', 'auteur') }}</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for a in annonces %}
+            <tr>
+                <th scope="row">{{ a.id }}</th>
+                <td>{{ a.titre }}</td>
+                <td>
+                    <span><img class="avatar-admin mr-3" src="{{ a.auteur.avatar }}"> {{ a.auteur.nomComplet }}</span>
+                </td>
+                <td class="text-center">
+                    <a href="{{ path('admin_editer_annonces', {'id': a.id}) }}" class="mx-2" style="font-size: 24px;"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="mx-2" style="font-size: 24px;"><i class="fas fa-trash text-danger"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation my-5">
+        {{ knp_pagination_render(annonces) }}
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('images-collection') }}
+{% endblock %} 

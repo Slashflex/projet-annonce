@@ -1,0 +1,18 @@
+{% form_theme form 'admin/annonce/_images-collection.html.twig' %}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        {{ form_start(form, {'attr': {'class': 'col-sm-12 col-md-8'}}) }}
+            {{ form_widget(form) }}
+        <button class="btn btn-primary px-5 d-block mx-auto font-weight-bold" type="submit">
+            {% if app.request.attributes.get('_route') == 'creer_annonce' %}
+                Créer
+            {% else %}
+                Modifier
+            {% endif %}
+                l'annonce
+        </button>
+        {{ form_end(form) }}
+    </div>
+</div>

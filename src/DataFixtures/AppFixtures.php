@@ -49,8 +49,7 @@ class AppFixtures extends Fixture
         $sexes = ['male', 'female'];
         $users = [];
 
-        for ($i = 1; $i <= 6; $i++) 
-        {
+        for ($i = 1; $i <= 12; $i++) {
             $user = new Utilisateur();
             $avatar = "https://randomuser.me/api/portraits/";
             $sexe = $faker->randomElement($sexes);
@@ -65,17 +64,16 @@ class AppFixtures extends Fixture
                 ->setAvatar($avatar)
                 ->setMotDePasse($hash)
                 ->setDescription($faker->paragraph(2));
-            
+
             $manager->persist($user);
             $users[] = $user;
         }
 
-        for ($i = 1; $i <= 20; $i++) 
-        {
+        for ($i = 1; $i <= 60; $i++) {
             $annonce = new Annonce();
-            $contenu = '<p>' . join('</p><p>',$faker->paragraphs(3)) . '</p>';
+            $contenu = '<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>';
             $titre = $faker->sentence(3);
-            $imageCouverture = "https://i.picsum.photos/id/". mt_rand(0, 1000) ."/1200/350.jpg";
+            $imageCouverture = "https://i.picsum.photos/id/" . mt_rand(0, 1000) . "/1200/350.jpg";
             $introduction = $faker->paragraph(2);
 
             $user = $users[mt_rand(0, count($users) - 1)];
@@ -87,17 +85,16 @@ class AppFixtures extends Fixture
                 ->setContenu($contenu)
                 ->setPrix(mt_rand(20, 100))
                 ->setAuteur($user);
-            
-            for ($j = 1; $j <= mt_rand(1, 10); $j++)
-            {
+
+            for ($j = 1; $j <= mt_rand(1, 10); $j++) {
                 $image = new Image();
                 $image
-                    ->setUrl("https://i.picsum.photos/id/". mt_rand(0, 1000) ."/640/480.jpg")
+                    ->setUrl("https://i.picsum.photos/id/" . mt_rand(0, 1000) . "/640/480.jpg")
                     ->setLegende($faker->sentence())
                     ->setAnnonce($annonce);
-                
+
                 $manager->persist($image);
-            }    
+            }
 
             $manager->persist($annonce);
         }

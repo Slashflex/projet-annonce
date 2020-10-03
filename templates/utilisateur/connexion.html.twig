@@ -7,10 +7,10 @@
         <div class="row">
             <h1>Connectez vous à votre compte</h1>
 
-            <form action="{{ path('connexion_compte_utilisateur')}}" method="POST" class="mx-auto">
+            <form method="post" class="bg-light p-5">
                 <div class="form-group">
                     <label for="email">Votre email</label>
-                    <input name="_username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrer votre email">
+                    <input name="_username" type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrer votre email">
                 </div>
                 <div class="form-group">
                     <label for="mot-de-passe">Mot de passe</label>

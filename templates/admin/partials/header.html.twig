@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="h3 m-0 text-light" href="#">Administration</a>
+
+    <a class="ml-auto mr-5 mb-0 text-light h5" href="{{ path('home') }}">Acceder au site</a>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ app.user.avatar }}"></a>
+        <div class="dropdown-menu">
+            <a href="{{ path('deconnexion_compte_utilisateur') }}" class="dropdown-item">Déconnexion</a>
+        </div>
+    </div>
+
+</nav>
